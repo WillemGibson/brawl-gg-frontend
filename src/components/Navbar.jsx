@@ -1,8 +1,8 @@
 import Logo from "../assets/logo-transparent.svg";
 
-const NavBar = () => {
+export function NavBar() {
     return <>
-    <div className="sticky inset-x-0 top-0 w-full z-50">
+        <div className="sticky inset-x-0 top-0 w-full z-50">
             <div className="mx-auto w-full h-24 max-w-screen=xl px-2.5 lg:px-20 content-center bg-black">
                 <div className="flex items-center justify-between mt-5 mb-5">
                         <a href="/">
@@ -29,7 +29,5 @@ const NavBar = () => {
                 </div>
             </div>
         </div>
-    </>;
-};
-
-export default NavBar;
+    </>
+}
