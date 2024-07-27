@@ -11,7 +11,8 @@ export default {
         'dark':'#001220',
         'mid':'#001d33',
         'light':'#2D82B7',
-        'highlight':'#fbae3c'
+        'highlight':'#fbae3c',
+        'temp-black':'#0C090A'
       },
       backgroundImage: {
         "gradient-to-c": "radial-gradient(var(--tw-gradient-stops))"

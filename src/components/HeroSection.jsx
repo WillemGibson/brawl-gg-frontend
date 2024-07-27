@@ -17,7 +17,7 @@ export default function HeroSection() {
                     </Link>
                 </div>  
             </div>
-            <div className='absolute m-auto left-0 right-0 top-48 bottom-0 z-0'>
+            <div className='absolute mx-auto left-0 right-0 top-48 bottom-0'>
                 <img 
                     src={Demo}
                     alt="Demo"

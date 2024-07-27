@@ -1,5 +1,7 @@
 import NavBar from '../components/Navbar'
 import HeroSection from '../components/HeroSection'
+import FeatureSection from '../components/FeatureSection'
+import Footer from '../components/Footer'
 
 export default function LandingPage() {
     return (
@@ -13,7 +15,11 @@ export default function LandingPage() {
                     <NavBar />
                     <div className="container mx-auto">
                         <HeroSection />
+                        <FeatureSection />
+                        <FeatureSection />
+                        <FeatureSection />
                     </div>
+                    <Footer />
                 </div>
             </div>
         </>
