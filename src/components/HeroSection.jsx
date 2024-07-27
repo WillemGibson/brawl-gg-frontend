@@ -1,6 +1,6 @@
 import Demo from '../assets/demo.png'
 
-export function HeroSection() {
+export default function HeroSection() {
     return <>
         <section className="hero-section relative text-center h-[750px] mt-32 flex flex-col">
             <div className='absolute m-auto left-0 right-0 top-32 bottom-0 z-10'>
