@@ -1,31 +1,13 @@
+import { Routes, Route } from 'react-router-dom';
+import LandingPage from './pages/LandingPage';
 import './App.css'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-// import ContactPage from './pages/Contact'
-// import AboutPage from './pages/About'
-import SignupPage from './pages/Signup'
-import HomePage from './pages/Home'
-// import LoginForm from './components/LoginForm'
 
-function App() {
-
-
+export default function App() {
   return (
     <>
-      <h1>Brawl</h1>
-      {/* <LoginForm /> */}
-
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<HomePage />} />
-          <Route path='/signup' element={<SignupPage />} />
-          {/* <Route path='/about' element={<AboutPage />} />
-          <Route path='/contact' element={<ContactPage />} />*/}
-        </Routes>
-      </BrowserRouter>
-
-
+      <Routes>
+        <Route index element={<LandingPage />} />
+      </Routes>
     </>
-  )
+  );
 }
-
-export default App
