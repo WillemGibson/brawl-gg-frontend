@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Logo from "../assets/logo-transparent.svg";
 
-export default function NavBar() {
+export default function Footer() {
     return <>
         <div className="sticky inset-x-0 top-0 w-full z-50">
             <div className="mx-auto w-full h-24 max-w-screen=xl px-2.5 lg:px-20 content-center bg-black">
