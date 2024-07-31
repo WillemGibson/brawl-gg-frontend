@@ -1,16 +1,24 @@
-import { Link } from 'react-router-dom'
+import Rpg from '../assets/characters/rpg.png'
+import Fps from '../assets/characters/fps.png'
 
 export default function BottomSection() {
     return <>
-        <section className="bottom-section relative text-center h-[750px] mt-32 flex flex-col overflow-hidden">
-            <div className='absolute m-auto left-0 right-0 top-32 bottom-0 z-10 bg-gradient-to-b from-transparent to-opacity-0'>
-                <div className='mx-auto mt-5 flex max-w-fit space-x-4'>
-                    <Link
-                        to="/signup"
-                        className="rounded-md mx-auto max-w-fit px-5 py-2 text-base font-medium shadow-sm bg-highlight text-white cursor-pointer hover:bg-amber-500 active:bg-amber-400"
-                        >
-                            Get Started
-                    </Link>
+            <section className="hero-section relative text-center h-[750px] mt-32 flex flex-col overflow-hidden">
+            <div className='absolute m-auto left-0 right-0 top-0 bottom-0 z-10 bg-gradient-to-b from-transparent to-opacity-0'>
+                <h1 className="text-center text-3xl font-extrabold leading-[1.15] text-white sm:text-5xl">
+                    Contact Us
+                </h1>
+                <div className=''>
+                    <img 
+                        src={Rpg}
+                        alt="RPG Character"
+                        className='absolute -left-40 top-32 brightness-75 h-[750px] scale-x-[-1]'
+                    />
+                    <img 
+                        src={Fps}
+                        alt="Fantasy Creature"
+                        className='absolute -right-20 brightness-75 h-full'
+                    />
                 </div>
             </div>
         </section>

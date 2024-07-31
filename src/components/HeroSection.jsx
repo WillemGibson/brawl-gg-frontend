@@ -5,6 +5,7 @@ export default function HeroSection() {
     return <>
         <section className="hero-section relative text-center h-[750px] mt-32 flex flex-col overflow-hidden">
             <div className='absolute m-auto left-0 right-0 top-32 bottom-0 z-10 bg-gradient-to-b from-transparent to-opacity-0'>
+                
                 <h1 className="text-center text-6xl font-extrabold leading-[1.15] text-white sm:text-8xl">
                     Brawlz.gg
                 </h1>
