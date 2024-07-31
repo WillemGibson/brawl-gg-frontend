@@ -3,8 +3,8 @@ import Demo from '../assets/demo.png'
 
 export default function HeroSection() {
     return <>
-        <section className="hero-section relative text-center h-[750px] mt-32 flex flex-col">
-            <div className='absolute m-auto left-0 right-0 top-32 bottom-0 z-10'>
+        <section className="hero-section relative text-center h-[750px] mt-32 flex flex-col overflow-hidden">
+            <div className='absolute m-auto left-0 right-0 top-32 bottom-0 z-10 bg-gradient-to-b from-transparent to-opacity-0'>
                 <h1 className="text-center text-6xl font-extrabold leading-[1.15] text-white sm:text-8xl">
                     Brawlz.gg
                 </h1>
@@ -21,7 +21,7 @@ export default function HeroSection() {
                 <img 
                     src={Demo}
                     alt="Demo"
-                    className='mx-auto max-h-[300px] sm:max-h-[900px] rounded-lg brightness-75 blur-[2px]'
+                    className='mx-auto max-h-[300px] sm:max-h-[900px] rounded-lg blur-[2px] '
                 />
             </div>
         </section>

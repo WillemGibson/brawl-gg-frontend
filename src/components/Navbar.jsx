@@ -1,16 +1,34 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../assets/logo-transparent.svg";
+import { useScroll, useMotionValueEvent } from "framer-motion";
 
 export default function NavBar() {
+    const { scrollY } = useScroll();
+    const [scrolled, setScrolled] = useState(false);
+
+    useMotionValueEvent(scrollY, "change", (latest) => {
+        if (latest > 0 && !scrolled) {
+            setScrolled(true);
+        } else if (latest === 0 && scrolled) {
+            setScrolled(false);
+        }
+    });
+
+    const defaultClasses = "transition-all absolute inset-0 -z-1 border-highlight";
+
+    let navBarClasses = scrolled ? `${defaultClasses} border-b border-highlight bg-black/75 backdrop-blur-lg` : `${defaultClasses} bg-transparent`;
+
     return <>
         <div className="sticky inset-x-0 top-0 w-full z-50">
-            <div className="mx-auto w-full h-24 max-w-screen=xl px-2.5 lg:px-20 content-center bg-black">
+            <div className={navBarClasses}></div>
+            <div className="mx-auto w-full h-24 max-w-screen=xl px-2.5 lg:px-20 content-center">
                 <div className="flex items-center justify-between mt-5 mb-5">
                     <Link to="/">
                         <img 
                             src={Logo}
                             alt="logo"
-                            className="h-14 w-14 content-end"
+                            className="h-14 w-14"
                         />
                     </Link>
                     <div>
