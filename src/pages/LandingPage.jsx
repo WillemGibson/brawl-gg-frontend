@@ -4,7 +4,7 @@ import { partnersLogo } from '../data/partners'
 import Slider from '../components/Slider'
 import FeaturesSection from '../components/FeaturesSection'
 import Footer from '../components/Footer'
-import BottomSection from '../components/BottomSection'
+import ContactSection from '../components/ContactSection'
 
 export default function LandingPage() {
     return <>
@@ -20,7 +20,7 @@ export default function LandingPage() {
                             <HeroSection />
                             <Slider images={partnersLogo} />
                             <FeaturesSection />
-                            <BottomSection />
+                            <ContactSection />
                         </div>
                         <Footer />
                     </div>

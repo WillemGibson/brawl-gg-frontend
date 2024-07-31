@@ -1,9 +1,9 @@
 import Rpg from '../assets/characters/rpg.png'
 import Fps from '../assets/characters/fps.png'
 
-export default function BottomSection() {
+export default function ContactSection() {
     return <>
-            <section className="hero-section relative text-center h-[750px] mt-32 flex flex-col">
+            <section className="relative text-center h-[750px] mt-32 flex flex-col">
             <div className='absolute m-auto left-0 right-0 top-0 bottom-0 z-10 bg-gradient-to-b from-transparent to-opacity-0'>
                 <h1 className="text-center text-3xl font-extrabold leading-[1.15] text-white sm:text-5xl">
                     Contact Us
