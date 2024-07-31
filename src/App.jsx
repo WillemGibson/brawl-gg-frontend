@@ -1,15 +1,25 @@
-import { Routes, Route } from 'react-router-dom'
-import LandingPage from './pages/LandingPage'
-import SignUp from './pages/Signup'
-import './App.css'
 
-export default function App() {
+import { Routes, Route } from 'react-router-dom';
+import LandingPage from './pages/LandingPage';
+import LoginPage from './pages/LoginPage';
+import SignupPage from './pages/SignupPage';
+import './App.css'
+import Template from './pages/_Template';
+import PageNotFound from './pages/PageNotFound';
+
+function App() {
+
   return (
     <>
       <Routes>
-        <Route index element={<LandingPage />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route path="/" element={<Template />} />
+        <Route index element ={<LandingPage />} />
+        <Route path='/login' element={<LoginPage />} />
+        <Route path='/signup' element={<SignupPage />} />
+        <Route path='*' element={<PageNotFound />} />
       </Routes>
     </>
-  );
+  )
 }
+export default App
+
