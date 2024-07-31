@@ -1,4 +1,6 @@
+
 import { NavLink } from "react-router-dom";
+
 import Logo from "../assets/logo-transparent.svg";
 
 export default function Footer() {
@@ -12,6 +14,7 @@ export default function Footer() {
                             alt="logo"
                             className="h-14 w-14 content-end"
                         />
+
                     </NavLink>
                     <div>
                         <NavLink 
@@ -33,3 +36,4 @@ export default function Footer() {
     </>
 
 }
+

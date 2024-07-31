@@ -1,4 +1,8 @@
+
 import { NavLink } from "react-router-dom";
+
+import { Link } from "react-router-dom";
+
 import Logo from "../assets/logo-transparent.svg";
 
 export default function NavBar() {
