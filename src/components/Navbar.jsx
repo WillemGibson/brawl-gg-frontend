@@ -28,7 +28,7 @@ export default function NavBar() {
                         <img 
                             src={Logo}
                             alt="logo"
-                            className="h-14 w-14"
+                            className="h-14 w-14 pointer-events-none"
                         />
                     </Link>
                     <div>

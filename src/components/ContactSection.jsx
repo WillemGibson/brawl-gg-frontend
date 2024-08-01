@@ -1,4 +1,3 @@
-import React from 'react';
 import Swal from 'sweetalert2';
 import Rpg from '../assets/characters/rpg.png'
 import Fps from '../assets/characters/fps.png'
@@ -57,7 +56,7 @@ export default function ContactSection() {
                     <img 
                         src={Rpg}
                         alt="RPG Character"
-                        className='absolute pointer-events-none -left-96 top-16 brightness-75 h-[1000px] scale-x-[-1]'
+                        className='absolute pointer-events-none -left-[375px] top-16 brightness-75 h-[1000px] scale-x-[-1]'
                     />
                     <img 
                         src={Fps}

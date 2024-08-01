@@ -18,7 +18,7 @@ export default function FeatureSection() {
                                         <img
                                             src={feature.icon}
                                             alt={feature.name + "icon"}
-                                            className="h-[50px]"
+                                            className="h-[50px] pointer-events-none"
                                         />
                                         <h3 className="font-bold text-xl text-white pl-5">{feature.title}</h3>
                                     </div>
