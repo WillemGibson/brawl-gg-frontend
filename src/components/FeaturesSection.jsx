@@ -13,9 +13,16 @@ export default function FeatureSection() {
                                 key={index} 
                                 className="bg-black border border-highlight/30 rounded-lg shadow-lg p-6 h-full flex space-x-4"
                             >
-                                <div>
-                                    <h3 className="font-bold text-xl text-white">{feature.title}</h3>
-                                    <p className="text-white">{feature.description}</p>
+                                <div className="flex flex-col">
+                                    <div className="flex flex-row items-center">
+                                        <img
+                                            src={feature.icon}
+                                            alt={feature.name + "icon"}
+                                            className="h-[50px]"
+                                        />
+                                        <h3 className="font-bold text-xl text-white pl-5">{feature.title}</h3>
+                                    </div>
+                                    <p className="pt-5 text-white">{feature.description}</p>
                                 </div>
                             </div>
                         ))

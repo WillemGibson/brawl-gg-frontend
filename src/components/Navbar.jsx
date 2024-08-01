@@ -24,7 +24,7 @@ export default function NavBar() {
             <div className={navBarClasses}></div>
             <div className="mx-auto w-full h-24 max-w-screen=xl px-2.5 lg:px-20 content-center">
                 <div className="flex items-center justify-between mt-5 mb-5">
-                    <Link to="/">
+                    <Link className="z-20" to="/">
                         <img 
                             src={Logo}
                             alt="logo"
