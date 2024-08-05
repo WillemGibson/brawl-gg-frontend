@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Logo from "../assets/logo-transparent.svg";
 
 export default function Footer() {
@@ -13,18 +13,18 @@ export default function Footer() {
                     />
                     <p className="absolute left-0 right-0 text-white text-center">© Brawlz.gg 2024</p>
                     <div>
-                        <Link 
+                        <NavLink 
                             to="/privacy"
                             className=" max-w-fit px-2 py-2 text-white text-xs"
                             >
                                 Privacy Policy
-                        </Link>
-                        <Link
+                        </NavLink>
+                        <NavLink
                             to="/tos"
                             className="mx-auto max-w-fit px-2 py-2 text-white text-xs"
                             >
                                 Terms of Service
-                        </Link>
+                        </NavLink>
                     </div>
                 </div>
             </div>
