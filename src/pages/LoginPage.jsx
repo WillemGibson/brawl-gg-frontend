@@ -6,6 +6,7 @@ export default function LoginPage() {
 
     return (
         <>
+        <div className='bg-black'>
             <NavBar />
             <div className='bg-violet-900'>
                 <div className='h-dvh flex flex-col items-center'>
@@ -15,6 +16,7 @@ export default function LoginPage() {
                 </div>
             </div>
             <Footer />
+        </div>
 
         </>
     )

@@ -6,6 +6,8 @@ export default function SignupPage(){
 
     return (
         <>
+        <div className='bg-black'>
+
             <NavBar />
             <div className='bg-violet-900'>
                 <div className='h-dvh flex flex-col items-center'>
@@ -15,6 +17,7 @@ export default function SignupPage(){
                 </div>
             </div>
             <Footer />
+        </div>
 
         </>
     )
