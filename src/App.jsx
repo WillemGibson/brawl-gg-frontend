@@ -8,6 +8,7 @@ import TosPage from './pages/TosPage'
 import './App.css'
 import Template from './pages/_Template';
 import PageNotFound from './pages/PageNotFound';
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
           <Route path='/signup' element={<SignupPage />} />
           <Route path='/privacy' element={<PrivacyPage />} />
           <Route path='/tos' element={<TosPage />} />
+          <Route path='/forgot-password' element={<ForgotPasswordPage />} />
           <Route path='*' element={<PageNotFound />} />
         </Route>
       </Routes>

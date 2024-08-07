@@ -35,7 +35,7 @@ const LoginForm = () => {
       </label>
 
       <div className="flex justify-around">
-      <a href="/" className="text-violet-900 font-bold text-l">Forgot password?</a>
+      <a href="/forgot-password" className="text-violet-900 font-bold text-l">Forgot password?</a>
       <a href="/signup" className="text-violet-900 font-bold text-l">Create account</a>
       </div>
 

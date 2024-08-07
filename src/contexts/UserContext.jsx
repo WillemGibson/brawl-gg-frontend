@@ -8,6 +8,7 @@ const UserDataContext = createContext({
 const UserDispatchContext = createContext({
 	makeSignupRequest: () => {},
 	makeLoginRequest: () => {},
+	makeForgotPasswordRequest: () => {},
 });
 
 export function useUserData() {
@@ -66,9 +67,26 @@ export default function UserProvider({ children }) {
     }
   };
 
+  const makeForgotPasswordRequest = async (email) => {
+	try {
+	  const bodyData = { email };
+	  const response = await fetch("https://brawl-gg-backend.onrender.com/forgot-password", {
+		method: "POST",
+		body: JSON.stringify(bodyData),
+		headers: {
+		  "Content-Type": "application/json",
+		},
+	  });
+	  const forgotPasswordResult = await response.json();
+	  return forgotPasswordResult;
+	} catch (error) {
+	  throw error;
+	}
+  };
+
   return (
 	<UserDataContext.Provider value={{ userJwt, decodedUserJwt }}>
-	  <UserDispatchContext.Provider value={{ makeSignupRequest, makeLoginRequest }}>
+	  <UserDispatchContext.Provider value={{ makeSignupRequest, makeLoginRequest, makeForgotPasswordRequest }}>
 		{children}
 	  </UserDispatchContext.Provider>
 	</UserDataContext.Provider>
