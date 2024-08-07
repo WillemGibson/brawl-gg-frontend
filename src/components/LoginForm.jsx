@@ -1,13 +1,19 @@
-
 import React, { useState } from 'react';
+import { useUserDispatch } from '../contexts/UserContext';
 
 const LoginForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
+  const { makeLoginRequest } = useUserDispatch();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(`Username: ${username}, Password: ${password}`);
+    try {
+      await makeLoginRequest(username, password);
+    } catch (error) {
+      setError('Error occured while logging in');
+    }
   };
 
   return (
@@ -29,7 +35,9 @@ const LoginForm = () => {
       <a href="/signup" className="text-violet-900 font-bold text-l">Create account</a>
       </div>
 
-      <button className='mx-auto w-fit px-5 py-2 rounded-md text-white font-bold relative bg-black' type="submit">Login</button>
+      <button className='mx-auto w-fit px-5 py-2 rounded-md text-white font-bold relative bg-black' type="submit">
+        Login
+      </button>
     </form>
   );
 };
