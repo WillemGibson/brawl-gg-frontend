@@ -17,6 +17,7 @@ const SignupForm = () => {
     } else {
       makeSignupRequest(username, password);
       console.log({username, password});
+      console.log('Sign up successful')
     }
   };
 
@@ -49,7 +50,7 @@ const SignupForm = () => {
       <input className='text-black rounded border-black border-2 w-full' size="100" type="password" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)}/>
       </label>
 
-      {error && <div style={{ color: 'red' }}>{error}</div>}
+      {error && <p className="text-red-500 font-bold">{error}</p>}
 
       <button className='mx-auto w-fit px-5 py-2 rounded-md text-white font-bold relative bg-black' type="submit">
         Register

@@ -49,11 +49,20 @@ export default function UserProvider({ children }) {
           "Content-Type": "application/json",
         },
       });
+
+	  if (!response.ok) {
+		if (response.status == 404) {
+			throw new Error('Account not found');
+		} else {
+			throw new Error('Error occurred while logging in');
+		}
+	  }
+
       const loginResult = await response.json();
       setUserJwt(loginResult.jwt);
       setDecodedUserJwt(loginResult.decodedJwt);
     } catch (error) {
-      console.error(error);
+      throw error;
     }
   };
 

@@ -12,7 +12,11 @@ const LoginForm = () => {
     try {
       await makeLoginRequest(username, password);
     } catch (error) {
-      setError('Error occured while logging in');
+      if (error.message == 'Account not found') {
+        setError('Account does not exist. Please create an account or try again.');
+      } else {
+        setError('Error occured while logging in');
+      }
     }
   };
 
@@ -34,6 +38,8 @@ const LoginForm = () => {
       <a href="/" className="text-violet-900 font-bold text-l">Forgot password?</a>
       <a href="/signup" className="text-violet-900 font-bold text-l">Create account</a>
       </div>
+
+      {error && <p className="text-red-500 font-bold">{error}</p>}
 
       <button className='mx-auto w-fit px-5 py-2 rounded-md text-white font-bold relative bg-black' type="submit">
         Login
