@@ -7,6 +7,7 @@ const SignupForm = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
   
   const { makeSignupRequest } = useUserDispatch();
 
@@ -14,10 +15,13 @@ const SignupForm = () => {
     event.preventDefault();
     if (password !== confirmPassword) {
       setError('Invalid, Passwords do not match');
+      setSuccess(null);
     } else {
-      makeSignupRequest(username, password);
-      console.log({username, password});
+      makeSignupRequest(username, email, password);
+      console.log({username, email, password});
       console.log('Sign up successful')
+      setError(null);
+      setSuccess('Sign up successful, Log in to continue.')
     }
   };
 
@@ -51,6 +55,7 @@ const SignupForm = () => {
       </label>
 
       {error && <p className="text-red-500 font-bold">{error}</p>}
+      {success && <p className="text-black font-bold">{success}</p>}
 
       <button className='mx-auto w-fit px-5 py-2 rounded-md text-white font-bold relative bg-black' type="submit">
         Register

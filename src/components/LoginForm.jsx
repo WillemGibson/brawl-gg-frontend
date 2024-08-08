@@ -2,15 +2,16 @@ import React, { useState } from 'react';
 import { useUserDispatch } from '../contexts/UserContext';
 
 const LoginForm = () => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
+  
   const { makeLoginRequest } = useUserDispatch();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await makeLoginRequest(username, password);
+      await makeLoginRequest(email, password);
     } catch (error) {
       if (error.message == 'Account not found') {
         setError('Account does not exist. Please create an account or try again.');
@@ -25,8 +26,8 @@ const LoginForm = () => {
       <h4 className='text-black font-bold text-xl'>Login to account</h4>
 
       <label className='mx-auto text-black text-left text-lg font-bold'>
-        Username:
-        <input className='text-black rounded border-black border-2 w-full' size="100" type="text" value={username} onChange={(event) => setUsername(event.target.value)}/>
+        Email:
+        <input className='text-black rounded border-black border-2 w-full' size="100" type="text" value={email} onChange={(event) => setEmail(event.target.value)}/>
       </label>
 
       <label className='mx-auto text-black text-left text-lg font-bold'>

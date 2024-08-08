@@ -31,7 +31,7 @@ const ForgotPassword = () => {
       </label>
 
       {error && <p className="text-red-500 font-bold">{error}</p>}
-      {success && <p className="text-green-500 font-bold">{success}</p>}
+      {success && <p className="text-black font-bold">{success}</p>}
 
       <button className='mx-auto w-fit px-5 py-2 rounded-md text-white font-bold relative bg-black' type="submit">
         Send Password Reset Email

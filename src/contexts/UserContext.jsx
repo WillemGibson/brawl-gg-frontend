@@ -23,16 +23,19 @@ export default function UserProvider({ children }) {
   const [userJwt, setUserJwt] = useState("");
   const [decodedUserJwt, setDecodedUserJwt] = useState({});
 
-  const makeSignupRequest = async (username, password) => {
+  const makeSignupRequest = async (username, email, password) => {
     try {
-      const bodyData = { username, password };
-      const response = await fetch("https://brawl-gg-backend.onrender.com/signup", {
-        method: "POST",
-        body: JSON.stringify(bodyData),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const bodyData = { username, email, password };
+      const response = await fetch(
+        "https://brawl-gg-backend.onrender.com/signup",
+        {
+          method: "POST",
+          body: JSON.stringify(bodyData),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       const signUpResult = await response.json();
       setUserJwt(signUpResult.jwt);
       setDecodedUserJwt(signUpResult.decodedJwt);
@@ -41,11 +44,11 @@ export default function UserProvider({ children }) {
     }
   };
 
-  const makeLoginRequest = async (username, password) => {
+  const makeLoginRequest = async (email, password) => {
     try {
       const response = await fetch("https://brawl-gg-backend.onrender.com/login", {
         method: "POST",
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ email, password }),
         headers: {
           "Content-Type": "application/json",
         },
