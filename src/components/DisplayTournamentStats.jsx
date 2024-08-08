@@ -72,7 +72,7 @@ const TournamentPage = () => {
     <div className="App">
       <h1>{tournamentData.tournamentName}</h1>
       <button onClick={handleEditToggle}>{isEditing ? "Save" : "Edit"}</button>
-      <div className="container">
+      <div className="tourn-container">
         {Object.keys(groupedByTeams).map((team, teamIndex) => (
           <div className="team-container" key={teamIndex}>
             <TournamentTable
