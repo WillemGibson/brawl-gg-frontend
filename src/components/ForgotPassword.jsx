@@ -10,13 +10,14 @@ const ForgotPassword = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await makeForgotPasswordRequest(email);
-      setSuccess('Password reset email sent successfully!');
+      const result = makeForgotPasswordRequest(email);
+      console.log(result);
+      setSuccess("Password reset email sent successfully!");
     } catch (error) {
-      if (error.message === 'Email not found') {
-        setError('Email not found. Please try again.');
+      if (error.message === "Email not found") {
+        setError("Email not found. Please try again.");
       } else {
-        setError('Error occurred while sending password reset email.');
+        setError("Error occurred while sending password reset email.");
       }
     }
   };

@@ -5,13 +5,16 @@ const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
-  
+  const [success, setSuccess] = useState(null);
+
   const { makeLoginRequest } = useUserDispatch();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       await makeLoginRequest(email, password);
+      setSuccess('Login successful! You will be redirected shortly.');
+      console.log('Login successful')
     } catch (error) {
       if (error.message == 'Account not found') {
         setError('Account does not exist. Please create an account or try again.');
@@ -41,6 +44,7 @@ const LoginForm = () => {
       </div>
 
       {error && <p className="text-red-500 font-bold">{error}</p>}
+      {success && <p className="text-black font-bold">{success}</p>}
 
       <button className='mx-auto w-fit px-5 py-2 rounded-md text-white font-bold relative bg-black' type="submit">
         Login
