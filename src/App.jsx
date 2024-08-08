@@ -8,6 +8,7 @@ import "./App.css";
 import Template from "./pages/_Template";
 import PageNotFound from "./pages/PageNotFound";
 import TournamentPage from "./pages/TournamentPage";
+import UserDashboard from "./pages/UserDashboard";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/tos" element={<TosPage />} />
+          <Route path="/dashboard" element={<UserDashboard />} />
           <Route path="/tournament/:id" element={<TournamentPage />} />
           <Route path="*" element={<PageNotFound />} />
         </Route>
