@@ -1,20 +1,49 @@
-import { useState, useEffect } from "react";
-import NavBar from "../components/Navbar"
+// Dashboard.js
+import { useEffect, useState } from 'react';
+import { useAuth } from '../data/AuthProvider';
+import { useNavigate } from 'react-router-dom';
 
-export default function PageNotFound() {
-    const [ UserData, setUserData ] = useEffect(); // STATE TO HOLD USER DATA 
-    const [tournamentData, setTournamentData] = useState(); // STATE TO HOLD TOURNAMENT DATA 
+export default function Dashboard() {
+    const { token, logout } = useAuth();
+    const [data, setData] = useState(null);
+    const navigate = useNavigate();
 
+    useEffect(() => {
+        if (!token) {
+            // Redirect to login if no token is found
+            navigate('/login');
+        } else {
+            fetch('https://brawl-gg-backend.onrender.com/tournament/all', {
+                method: 'GET',
+                headers: {
+                    'jwt': `${token}`,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                setData(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    }, [token, navigate]);
 
-
-	return <>
-		<section className="relative h-screen flex flex-col bg-black">
-            <NavBar />
-                <div className='absolute bottom-0 right-0 left-0 flex justify-center items-center min-h-full z-20'>
-                    <div className='flex flex-col justify-center items-center max-w-[1250px] max-h-[1250px] h-full w-full p-6 rounded-lg shadow-2xl text-white m-6 bg-black'>
-						
-                    </div>
-                </div>
-		</section>
-	</>
+    return (
+        <div>
+            <h1>Dashboard</h1>
+            {data ? (
+                <pre>{JSON.stringify(data, null, 2)}</pre>
+            ) : (
+                <p>Loading data...</p>
+            )}
+            <button onClick={logout}>Logout</button>
+        </div>
+    );
 }
