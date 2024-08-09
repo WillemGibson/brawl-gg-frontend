@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/Navbar'
 import HeroSection from '../components/HeroSection'
 import { partnersLogo } from '../data/partners'

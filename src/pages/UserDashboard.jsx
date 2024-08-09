@@ -6,8 +6,8 @@ import UserRow from '../components/UserRow';
 import TournamentTable from '../components/TournamentTable';
 
 export default function Dashboard() {
-    const { token, logout } = useAuth();
-    const [userData, setUserData] = useState(null);
+    const { token } = useAuth();
+    const [userData, setUserData] = useState();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -38,7 +38,7 @@ export default function Dashboard() {
 
     }, [token, navigate]);
 
-    const user = JSON.stringify(userData.userData, null, 2);
+    const user = userData ? JSON.stringify(userData, null, 2) : null; // Handle case where userData might be null
 
     return (
         <div>
@@ -50,10 +50,9 @@ export default function Dashboard() {
                 <div className='relative z-20'>
                     <NavBar />
                     <div className='overflow-hidden'>
-                        <div className="container mx-auto h-screen">
+                        <div className="flex flex-col container mx-auto h-screen justify-center">
                             <UserRow user={user} />
                             <TournamentTable />
-                            <button className="mx-auto mt-5 max-w-fit px-5 py-2 rounded-md bg-highlight text-white font-bold cursor-pointer relative hover:bg-amber-500 active:bg-amber-400" onClick={logout}>Logout</button>
                         </div>
                     </div>
                 </div>
