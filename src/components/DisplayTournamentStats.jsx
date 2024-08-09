@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import TournamentTable from "../components/TournamentTable";
-import "../components/styles/TournamentTable.css";
 
 const TournamentPage = () => {
   const { id } = useParams(); // EXTRACT TOURNAMENT ID FROM URL PARAMETERS
