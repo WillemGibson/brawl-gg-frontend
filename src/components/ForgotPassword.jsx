@@ -1,23 +1,30 @@
 import React, { useState } from 'react';
 import { useUserDispatch } from '../contexts/UserContext';
+import { useNavigate } from 'react-router-dom';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
+  const navigate = useNavigate();
+
   const { makeForgotPasswordRequest } = useUserDispatch();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const result = makeForgotPasswordRequest(email);
+      const result = await makeForgotPasswordRequest(email.toString());
       console.log(result);
-      setSuccess("Password reset email sent successfully!");
+      setSuccess("Password reset email sent successfully! Check email for recovery code");
+      setTimeout(() => {
+        navigate('/reset-password');
+      }, 2000);
     } catch (error) {
+      console.error('Error:', error);
       if (error.message === "Email not found") {
         setError("Email not found. Please try again.");
       } else {
-        setError("Error occurred while sending password reset email.");
+        setError("Error occurred while sending password recovery code.");
       }
     }
   };

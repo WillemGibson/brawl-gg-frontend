@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useUserDispatch } from '../contexts/UserContext';
+import { useNavigate } from 'react-router-dom';
 
 const SignupForm = () => {
   const [username, setUsername] = useState('');
@@ -10,18 +11,26 @@ const SignupForm = () => {
   const [success, setSuccess] = useState(null);
   
   const { makeSignupRequest } = useUserDispatch();
+  const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (password !== confirmPassword) {
       setError('Invalid, Passwords do not match');
       setSuccess(null);
     } else {
-      makeSignupRequest(username, email, password);
-      console.log({username, email, password});
-      console.log('Sign up successful')
-      setError(null);
-      setSuccess('Sign up successful, Log in to continue.')
+      try {
+        await makeSignupRequest(username, email, password);
+        console.log({username, email, password});
+        console.log('Sign up successful')
+        setError(null);
+        setSuccess('Sign up successful, redirecting to login page...');
+        setTimeout(() => {
+          navigate('/login');
+        }, 2000);
+      } catch (error) {
+        setError('Error occurred during signup');
+      }
     }
   };
 

@@ -9,6 +9,7 @@ import './App.css'
 import Template from './pages/_Template';
 import PageNotFound from './pages/PageNotFound';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
+import ResetPasswordPage from './pages/ResetPassword';
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
           <Route path='/privacy' element={<PrivacyPage />} />
           <Route path='/tos' element={<TosPage />} />
           <Route path='/forgot-password' element={<ForgotPasswordPage />} />
+          <Route path='/reset-password' element={<ResetPasswordPage />} />
           <Route path='*' element={<PageNotFound />} />
         </Route>
       </Routes>

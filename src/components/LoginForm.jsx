@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useUserDispatch } from '../contexts/UserContext';
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -8,13 +9,17 @@ const LoginForm = () => {
   const [success, setSuccess] = useState(null);
 
   const { makeLoginRequest } = useUserDispatch();
+  const navigate = useNavigate(); 
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       await makeLoginRequest(email, password);
       setSuccess('Login successful! You will be redirected shortly.');
-      console.log('Login successful')
+      console.log('Login successful');
+      setTimeout(() => { 
+        navigate('/'); 
+      }, 2000); 
     } catch (error) {
       if (error.message == 'Account not found') {
         setError('Account does not exist. Please create an account or try again.');

@@ -74,24 +74,33 @@ export default function UserProvider({ children }) {
 
   const makeForgotPasswordRequest = async (email) => {
     try {
-      const bodyData = { email };
       const response = await fetch(
         "https://brawl-gg-backend.onrender.com/login/forgot-password",
         {
           method: "POST",
-          body: JSON.stringify(bodyData),
+          body: JSON.stringify({ email }),
           headers: {
             "Content-Type": "application/json",
           },
         }
       );
-      const forgotPasswordResult = await response.json();
-      console.log(forgotPasswordResult);
-      return forgotPasswordResult;
+  
+      if (!response.ok) {
+        throw new Error(`Error ${response.status}: ${response.statusText}`);
+      }
+  
+      const result = await response.json();
+      if (result.error) {
+        throw new Error(result.error);
+      }
+      return result;
     } catch (error) {
+      console.error(error);
       throw error;
     }
   };
+
+
 
   return (
 	<UserDataContext.Provider value={{ userJwt, decodedUserJwt }}>
@@ -100,4 +109,4 @@ export default function UserProvider({ children }) {
 	  </UserDispatchContext.Provider>
 	</UserDataContext.Provider>
   );
-}
+};
