@@ -1,44 +1,51 @@
 import { useEffect, useState } from 'react';
-import { useAuth } from '../data/AuthProvider';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/Navbar';
 import UserRow from '../components/UserRow';
 import TournamentTable from '../components/TournamentTable';
 
 export default function Dashboard() {
-    const { token } = useAuth();
-    const [userData, setUserData] = useState();
+    const [userData, setUserData] = useState(null); // Initialize to null
+    const [loading, setLoading] = useState(true); // Track loading state
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!token) {
-            // Redirect to login if no token is found
-            navigate('/login');
-        } else {
-            fetch('https://brawl-gg-backend.onrender.com/user/dashboard', {
-                method: 'GET',
-                headers: {
-                    'jwt': `${token}`,
-                    'Content-Type': 'application/json'
+        const fetchData = async () => {
+            try {
+                const localToken = localStorage.getItem('authToken');
+                if (!localToken) {
+                    navigate('/login');
+                    return;
                 }
-            })
-            .then(response => {
+
+                const response = await fetch('https://brawl-gg-backend.onrender.com/user/dashboard', {
+                    method: 'GET',
+                    headers: {
+                        'jwt': localToken,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-                return response.json();
-            })
-            .then(data => {
-                setUserData(data);
-            })
-            .catch(error => {
+
+                const data = await response.json();
+                setUserData(data); // Update state with fetched data
+            } catch (error) {
                 console.error('Error:', error);
-            });
-        }
+                navigate('/login'); // Redirect on error
+            } finally {
+                setLoading(false); // Set loading to false
+            }
+        };
 
-    }, [token, navigate]);
+        fetchData();
+    }, [navigate]);
 
-    const user = userData ? JSON.stringify(userData, null, 2) : null; // Handle case where userData might be null
+    if (loading) {
+        return <div>Loading...</div>; // Show loading state
+    }
 
     return (
         <div>
@@ -51,8 +58,14 @@ export default function Dashboard() {
                     <NavBar />
                     <div className='overflow-hidden'>
                         <div className="flex flex-col container mx-auto h-screen justify-center">
-                            <UserRow user={user} />
-                            <TournamentTable />
+                            {userData ? (
+                                <>
+                                    <UserRow user={userData} />
+                                    <TournamentTable user={userData} />
+                                </>
+                            ) : (
+                                <div>No user data available.</div>
+                            )}
                         </div>
                     </div>
                 </div>
