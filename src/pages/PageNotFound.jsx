@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import NavBar from "../components/Navbar"
 import Error from "../assets/icons/error.svg"
 
