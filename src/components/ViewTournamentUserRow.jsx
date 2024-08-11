@@ -6,7 +6,7 @@ const ViewTournamentUserRow = ({
 }) => {
   // FUNCTION TO HANDLE INPUT CHANGE FOR A STAT
   const handleInputChange = (stat, value) => {
-    // CALL ONSTATCHANGE CALLABCK WITH PLAYER NAME, STAT, AND NEW VALUE
+    // CALL ONSTATCHANGE CALLBACK WITH PLAYER NAME, STAT, AND NEW VALUE
     onStatChange(userData.player, stat, value);
   };
 

@@ -1,21 +1,28 @@
+/* Import the base styles from Tailwind CSS */
 @tailwind base;
+
+/* Import the component styles from Tailwind CSS */
 @tailwind components;
+
+/* Import the utility styles from Tailwind CSS */
 @tailwind utilities;
 
+/* Root element styling */
 #root {
-    display: flex;
-    flex-direction: column;
-    min-height: 100dvh;
-  }
+    display: flex; /* Use flexbox layout */
+    flex-direction: column; /* Arrange children in a column */
+    min-height: 100dvh; /* Minimum height of the viewport height (dynamic) */
+}
 
+/* Extend Tailwind's utilities with custom styles */
 @layer utilities {
-      /* Hide scrollbar for Chrome, Safari and Opera */
-      .no-scrollbar::-webkit-scrollbar {
-          display: none;
-      }
-      /* Hide scrollbar for IE, Edge and Firefox */
-      .no-scrollbar {
-          -ms-overflow-style: none;  /* IE and Edge */
-          scrollbar-width: none;  /* Firefox */
+    /* Hide scrollbar for webkit browsers (Chrome, Safari, Opera) */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none; /* Hide scrollbar */
     }
-  }
+    /* Hide scrollbar for IE, Edge, and Firefox */
+    .no-scrollbar {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+    }
+}

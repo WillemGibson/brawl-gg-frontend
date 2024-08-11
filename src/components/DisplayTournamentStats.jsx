@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
-import { useParams, NavLink } from "react-router-dom";
-import ViewTournament from "../components/ViewTournament";
-import "../styles/TournamentTable.css";
-import BackArrow from "../assets/icons/back-arrow.svg";
-import copyIcon from "../assets/icons/copy.svg"
+import { useState, useEffect } from "react"; // Import React hooks for state and side effects
+import { useParams, NavLink } from "react-router-dom"; // Import hooks for routing
+import ViewTournament from "../components/ViewTournament"; // Import component to view tournament details
+import "../styles/TournamentTable.css"; // Import CSS for styling
+import BackArrow from "../assets/icons/back-arrow.svg"; // Import back arrow icon
+import copyIcon from "../assets/icons/copy.svg"; // Import copy icon
 
 const TournamentPage = () => {
   const { id } = useParams(); // GET THE TOURNAMENT ID FROM URL PARAMETERS
@@ -25,21 +25,21 @@ const TournamentPage = () => {
 
         setTournamentData(data.tournament); // SET TOURNAMENT DATA IN STATE
         setPlayerStats(data.tournament.playerStats); // SET PLAYER STATS IN STATE
-        console.log(data);
+        console.log(data); // LOG DATA FOR DEBUGGING
       } catch (error) {
         console.error("Error fetching tournament data:", error); // HANDLE ANY ERRORS GRACEFULLY
       }
     };
 
     fetchTournamentData();
-  }, [id]);
+  }, [id]); // DEPENDENCY ARRAY: REFETCH DATA IF ID CHANGES
 
   // SIMPLE LOADING DIV IF WE DONT HAVE ANY TOURNAMENT DATA
   if (!tournamentData) {
     return <div>Loading...</div>;
   }
 
-  // FUNCTION TO GROUP THE PLAYER BY THE TEAM THEY ARE IN THIS IS SO WE CAN PARSE ALL OF THE PLAYER TO THERE RESPECTIVE TEAMS
+  // FUNCTION TO GROUP THE PLAYER BY THE TEAM THEY ARE IN
   const groupedByTeams = playerStats.reduce((acc, player) => {
     if (!acc[player.team]) {
       acc[player.team] = []; // INITIALIZE TEAM ARRAY IF NOT EXISTS
@@ -55,10 +55,10 @@ const TournamentPage = () => {
         const response = await fetch(
           `https://brawl-gg-backend.onrender.com/tournament/${id}`,
           {
-            method: "PATCH",
+            method: "PATCH", // HTTP PATCH REQUEST TO UPDATE DATA
             headers: {
-              "Content-Type": "application/json",
-              jwt: localStorage.getItem("authToken"),
+              "Content-Type": "application/json", // SET CONTENT TYPE HEADER
+              jwt: localStorage.getItem("authToken"), // GET AUTH TOKEN FROM LOCAL STORAGE
             },
             body: JSON.stringify({
               playerStats,
@@ -70,14 +70,14 @@ const TournamentPage = () => {
         );
 
         if (!response.ok) {
-          throw new Error("Failed to save tournament data");
+          throw new Error("Failed to save tournament data"); // ERROR HANDLING FOR FAILED UPDATE
         }
 
-        const updatedData = await response.json();
-        setTournamentData(updatedData.tournament); // Update with the new tournament data
-        console.log("Tournament saved successfully:");
+        const updatedData = await response.json(); // PARSE JSON RESPONSE
+        setTournamentData(updatedData.tournament); // UPDATE WITH THE NEW TOURNAMENT DATA
+        console.log("Tournament saved successfully:"); // LOG SUCCESS MESSAGE
       } catch (error) {
-        console.error("Error saving tournament data:", error);
+        console.error("Error saving tournament data:", error); // HANDLE ANY ERRORS GRACEFULLY
       }
     }
     setIsEditing(!isEditing); // TOGGLE IS EDITING STATE
@@ -100,22 +100,24 @@ const TournamentPage = () => {
     );
   };
 
+  // FUNCTION TO COPY JOIN LINK TO CLIPBOARD
   const handleJoinLinkClick = () => {
     const joinLink = tournamentData.joinlink;
     if (joinLink) {
       navigator.clipboard
-        .writeText(joinLink)
+        .writeText(joinLink) // COPY JOIN LINK TO CLIPBOARD
         .then(() => {
-          alert("Join link copied to clipboard!");
+          alert("Join link copied to clipboard!"); // SHOW SUCCESS ALERT
         })
         .catch((error) => {
-          console.error("Failed to copy join link:", error);
+          console.error("Failed to copy join link:", error); // HANDLE ANY ERRORS GRACEFULLY
         });
     }
   };
 
   return (
     <div className="bg-black text-white rounded-lg max-w-full w-full mx-auto my-6 p-6 space-y-6 border-2 border-temp-black shadow-lg">
+      {/* Navigation back to dashboard */}
       <div className="">
         <NavLink
             to="/dashboard"
@@ -130,6 +132,7 @@ const TournamentPage = () => {
         </NavLink>
         <h1 className="text-4xl font-extrabold text-center">{tournamentData.tournamentName}</h1>
       </div>
+      {/* Action buttons for editing and copying invite link */}
       <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
         <button
           className="px-4 py-2 rounded-lg bg-[#fbae3c] text-white font-medium shadow-lg hover:bg-[#f8a32a] focus:outline-none focus:ring-2 focus:ring-[#fbae3c] transition-colors duration-300"
@@ -149,6 +152,7 @@ const TournamentPage = () => {
           Invite Players
         </button>
       </div>
+      {/* Display tournament details grouped by teams */}
       <div className="space-y-4 h-[600px] overflow-y-scroll no-scrollbar border-2 border-temp-black rounded-lg">
         {Object.keys(groupedByTeams).map((team, teamIndex) => (
           <div className="bg-black/75 p-4 rounded-lg shadow-md text-white " key={teamIndex}>
@@ -166,4 +170,4 @@ const TournamentPage = () => {
   );
 };
 
-export default TournamentPage;
+export default TournamentPage; // EXPORT COMPONENT

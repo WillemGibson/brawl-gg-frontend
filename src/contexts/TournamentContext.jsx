@@ -10,7 +10,6 @@ export function useTournamentDispatch() {
     return useContext(TournamentDispatchContext);
 }
 
-
 const TournamentProvider = ({ children }) => {
   const { userJwt } = useUserData(); // Get userJwt from UserContext
   const [error, setError] = useState(null);
@@ -42,7 +41,7 @@ const TournamentProvider = ({ children }) => {
         },
         body: JSON.stringify(tournamentData),
       });
-  
+
       if (response.ok) {
         setSuccess('Tournament created successfully!');
         console.log('Tournament created successfully:', await response.json());

@@ -1,40 +1,45 @@
-import React, { useState } from 'react';
-import { useUserDispatch } from '../contexts/UserContext';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react'; // Import React and useState hook
+import { useUserDispatch } from '../contexts/UserContext'; // Import context for user-related actions
+import { useNavigate } from 'react-router-dom'; // Import hook for navigation
 
 const ResetPassword = () => {
-  const [passcode, setPasscode] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(false);
+  const [passcode, setPasscode] = useState(''); // State to store the passcode
+  const [newPassword, setNewPassword] = useState(''); // State to store the new password
+  const [error, setError] = useState(null); // State to handle error messages
+  const [success, setSuccess] = useState(false); // State to handle success messages
 
-  const { makeResetPasswordRequest } = useUserDispatch();
-  const navigate = useNavigate();
+  const { makeResetPasswordRequest } = useUserDispatch(); // Function to handle password reset request
+  const navigate = useNavigate(); // Hook to navigate programmatically
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
-    setError(null); // Reset error before making a request
-    setSuccess(false); // Reset success message before making a request
+    event.preventDefault(); // Prevent default form submission behavior
+    setError(null); // Reset error message
+    setSuccess(false); // Reset success message
   
+    // Check if both passcode and new password are provided
     if (!passcode || !newPassword) {
       setError("Passcode and new password cannot be empty.");
       return;
     }
   
     try {
-      const result = await makeResetPasswordRequest(passcode, newPassword);
-      setSuccess(true);
+      // Attempt to reset the password using provided passcode and new password
+      await makeResetPasswordRequest(passcode, newPassword);
+      setSuccess(true); // Set success message
       // Redirect to login page after a short delay
       setTimeout(() => {
         navigate('/login');
       }, 2000);
     } catch (error) {
-      setError(error.message); // Display the error message
+      setError(error.message); // Display any error that occurs
     }
   };
 
   return (
-    <form className='flex flex-col justify-center bg-black text-white p-6 rounded-lg shadow-lg w-full max-w-md mx-auto z-10 border-temp-black border-2' onSubmit={handleSubmit}>
+    <form 
+      className='flex flex-col justify-center bg-black text-white p-6 rounded-lg shadow-lg w-full max-w-md mx-auto z-10 border-temp-black border-2' 
+      onSubmit={handleSubmit}
+    >
       <h4 className='text-black font-bold text-xl'>Reset Password</h4>
 
       <label className='text-left text-lg font-bold mb-4'>
@@ -66,7 +71,10 @@ const ResetPassword = () => {
       {error && <p className="text-red-500 font-bold">{error}</p>}
       {success && <p className="text-highlight font-bold">Password reset successfully! Redirecting to login page...</p>}
 
-      <button className='mx-auto w-full px-5 py-2 rounded-md bg-[#fbae3c] text-white font-bold hover:bg-[#f8a32a] active:bg-[#e89c1b] transition-colors duration-300' type="submit">
+      <button 
+        className='mx-auto w-full px-5 py-2 rounded-md bg-[#fbae3c] text-white font-bold hover:bg-[#f8a32a] active:bg-[#e89c1b] transition-colors duration-300' 
+        type="submit"
+      >
         Reset Password
       </button>
     </form>
